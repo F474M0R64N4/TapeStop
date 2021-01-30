@@ -24,6 +24,7 @@ std::vector<ea_t> bpt_list = {};
 
 // TODO: 
 //		сохранение содержимого регистров в текстовик
+//		сохранение содержимого стека в текстовик
 
 struct ts_next_place_t : public action_handler_t
 {
