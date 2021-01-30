@@ -5,6 +5,8 @@ The description will be later
 Windows 10, IDA Pro 7.5
 Plug-in for 64 bits
 
+FISH64 White VM
+
 ## Shortcut
 
 To use a plug-in it is necessary to click everything two keys.
