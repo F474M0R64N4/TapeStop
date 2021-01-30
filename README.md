@@ -1,5 +1,5 @@
 # TapeStop
-The description will be later
+The assistant to search of bottlenecks in the virtual machine
 
 ## Tested on the machine
 Windows 10, IDA Pro 7.5
