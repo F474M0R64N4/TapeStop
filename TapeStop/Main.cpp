@@ -40,8 +40,17 @@ struct ts_next_place_t : public action_handler_t
 
 		// поставим точку останова на .text секцию
 		segment_t* textSeg = get_segm_by_name(".text");
-		add_bpt(textSeg->start_ea);
-		//enable_bpt(textSeg->start_ea);
+		
+		// проверим есть ли по данному адресу бряк
+		// если нет, то поставим
+		if (check_bpt(textSeg->start_ea) == BPTCK_NONE)
+		{
+			add_bpt(textSeg->start_ea);
+		}
+		// если бряк отключен - включим повторно
+		else if (check_bpt(textSeg->start_ea) == BPTCK_NO) {
+			enable_bpt(textSeg->start_ea);
+		}
 
 		// прыгнем в секцию .text (снаружи вм)
 		continue_process();
@@ -112,7 +121,17 @@ bool idaapi plugin_ctx_t::run(size_t)
 
 			// Теперь у нас есть чистые адреса
 			// На них нужно установить точки останова
-			add_bpt(SearchStartAddr);
+			
+			// проверим есть ли по данному адресу бряк
+			// если нет, то поставим
+			if (check_bpt(SearchStartAddr) == BPTCK_NONE) 
+			{
+				add_bpt(SearchStartAddr);
+			}
+			// если бряк отключен - включим повторно
+			else if (check_bpt(SearchStartAddr) == BPTCK_NO) {
+				enable_bpt(SearchStartAddr);
+			} 
 		}
 
 		SearchStartAddr = SearchStartAddr + 3;
